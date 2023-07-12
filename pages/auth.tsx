@@ -1,8 +1,10 @@
+import GG from "@/components/GG";
 import Input from "@/components/Input";
 import axios from "axios";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useCallback, useState } from "react";
+
 
 const Auth = () => {
   const [email, setEmail] = useState("");
@@ -11,10 +13,11 @@ const Auth = () => {
   const [variant, setVariant] = useState("login");
 
   const router = useRouter();
+
+  //toggles between login form and register form
   const toggleVariant = useCallback(() => {
     setVariant((current) => (current === "login" ? "register" : "login"));
   }, []);
-
 
   const login = useCallback(async () => {
     try {
@@ -43,8 +46,6 @@ const Auth = () => {
       console.log(error);
     }
   }, [email, name, password, login]);
-
-  
 
   return (
     <div className="relative h-full w-full bg-[url(/images/hero.jpg)] bg-fixed bg-no-repeat bg-center bg-cover">
@@ -93,9 +94,14 @@ const Auth = () => {
             </div>
             {variant === "login" ? (
               <>
-                <button onClick={login} className="bg-red-600 py-3 mb-2 text-white rounded-md w-full mt-10 hover:bg-red-700 transition">
+                <button
+                  onClick={login}
+                  className="bg-red-600 py-3 mb-2 text-white rounded-md w-full mt-10 hover:bg-red-700 transition"
+                >
                   Login
                 </button>
+
+                <GG></GG>
                 <p className="bg-red-600">
                   First time using netflix
                   <span className=" cursor-pointer" onClick={toggleVariant}>
@@ -112,6 +118,9 @@ const Auth = () => {
                 >
                   Register
                 </button>
+
+                <GG></GG>
+
                 <p className="bg-red-600">
                   {" "}
                   Already have an account?{" "}
