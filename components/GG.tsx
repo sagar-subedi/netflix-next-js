@@ -6,13 +6,13 @@ const GG = () => {
   return (
     <div className="flex gap-4 items-center justify-center py-3 cursor-pointer">
       <div onClick={()=>{signIn('google', {
-        callbackUrl: '/',
+        callbackUrl: '/profiles',
       })}}>
         <FaGoogle size={30} color="white" />
       </div>
       <div onClick={()=>{
         signIn('github', {
-          callbackUrl: '/',
+          callbackUrl: '/profiles',
         })
       }}>
         <FaGithub size={30} color="white" />
