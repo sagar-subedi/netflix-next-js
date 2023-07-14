@@ -1,5 +1,6 @@
 import useBilllboard from '@/hooks/useBillboard'
 import React from 'react'
+import PlayButton from './PlayButton';
 
 const Billboard = () => {
     const {data:movie} = useBilllboard();
@@ -25,7 +26,9 @@ const Billboard = () => {
             text-[10px]
             mt-3
             '>{movie?.description}</p>
+            
             <div className='flex items-center gap-3 mt-3'>
+            <PlayButton movieId={movie?.id}></PlayButton>
                 <button
                 className='
                 bg-white
