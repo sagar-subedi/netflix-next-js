@@ -1,9 +1,15 @@
 import useBilllboard from '@/hooks/useBillboard'
 import React from 'react'
 import PlayButton from './PlayButton';
+import { useCallback } from 'react';
+import useInfoModal from '@/hooks/useInfoModal';
 
 const Billboard = () => {
     const {data:movie} = useBilllboard();
+    const {openModal} = useInfoModal();
+    const handleOpenModel = useCallback(()=>{
+        openModal(movie?.id);
+    },[openModal, movie?.id]);
   return (
     <div className='relative h-[56.25vw]'>
       <video
@@ -30,6 +36,7 @@ const Billboard = () => {
             <div className='flex items-center gap-3 mt-3'>
             <PlayButton movieId={movie?.id}></PlayButton>
                 <button
+                onClick={handleOpenModel}
                 className='
                 bg-white
                 text-white

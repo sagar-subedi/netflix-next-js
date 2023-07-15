@@ -1,7 +1,9 @@
 import React from "react";
 import {BsPlayCircle} from "react-icons/bs"
+import {BiChevronDown} from "react-icons/bi"
 import FavouriteButton from "./FavouriteButton";
 import { useRouter } from "next/router";
+import useInfoModal from "@/hooks/useInfoModal";
 
 interface MovieCardProps {
   data: Record<string, any>;
@@ -9,6 +11,7 @@ interface MovieCardProps {
 
 const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
   const router = useRouter();
+  const {openModal} = useInfoModal();
   return (
     <div className="relative cursor-pointer group">
       <img
@@ -29,9 +32,10 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
         <div
           className="
         bg-zinc-800
+        px-6 py-5 
         "
         >
-          <div className="flex pt-2 gap-1 items-center">
+          <div className="flex pt-2 gap-3 items-center">
           <div className="flex items-center gap-3">
             <div className="flex items-center justify-center cursor-pointer
              w-6
@@ -40,6 +44,10 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
               onClick={()=>{router.push(`/watch/${data?.id}`)}}><BsPlayCircle/></div>
           </div>
           <FavouriteButton movieId={data?.id}/>
+          <div
+          onClick={()=>{openModal(data?.id)}} className="ml-auto bg-white w-6 h-6 cursor-pointer rounded-full flex justify-center items-center">
+              <BiChevronDown/>
+          </div>
           </div>
           <p className="text-green-400 font-semibold mt-2 text-[12px]">
             New <span className="text-white">2023</span>
